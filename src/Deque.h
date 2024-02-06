@@ -23,6 +23,26 @@ private:
 };
 
 template<class T>
+void Deque<T>::push_front(T r) {
+    if (_n == _max) {
+        auto newSize = static_cast<std::size_t>(std::ceil(_n*1.5));
+        resize(newSize);
+        _max = newSize;
+    } else if (_n == 0) {
+        _data[0] = r;
+        _n++;
+        return;
+    }
+    // To make room for the first item, we must move every other items by 1 slot. This process is O(n) and inefficient.
+    // This is why a deque is usually implemented as a doubly-linked list.
+    for (std::size_t i = _n; i--;) { // Decrementing loop with unsigned integer
+        _data[i+1] = _data[i];
+    }
+    _data[0] = r;
+    _n++;
+}
+
+template<class T>
 T Deque<T>::pop_back() {
     if (_n > 0) {
         // Data remains (no shrinking yet) but can be overwritten
