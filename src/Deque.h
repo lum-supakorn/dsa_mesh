@@ -1,10 +1,8 @@
 #pragma once
 
-#include <cstddef>
-#include <cstdlib>
-#include <new>
-#include <stdexcept>
-#include <cmath>
+#include <new>          // std::bad_alloc
+#include <stdexcept>    // std::out_of_range
+#include <cmath>        // std::ceil
 
 template<class T>
 class Deque {
