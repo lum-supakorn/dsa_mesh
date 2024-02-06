@@ -5,7 +5,6 @@
 #include <new>
 #include <stdexcept>
 #include <cmath>
-#include <iostream>
 
 template<class T>
 class Deque {
@@ -17,12 +16,18 @@ public:
     void push_back(T r);
     T pop_front();
     T pop_back();
+    std::size_t n();
 private:
    T* _data;
    std::size_t _n;
    std::size_t _max;
    void resize(std::size_t newSize);
 };
+
+template<class T>
+std::size_t Deque<T>::n() {
+    return _n;
+}
 
 template<class T>
 void Deque<T>::push_back(T r) {
