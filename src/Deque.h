@@ -23,6 +23,17 @@ private:
 };
 
 template<class T>
+T Deque<T>::pop_back() {
+    if (_n > 0) {
+        // Data remains (no shrinking yet) but can be overwritten
+        _n--;
+        return _data[_n];
+    } else {
+        throw std::out_of_range("Popping an empty deque");
+    }
+}
+
+template<class T>
 std::size_t Deque<T>::n() {
     return _n;
 }
@@ -35,7 +46,7 @@ void Deque<T>::push_back(T r) {
         _max = newSize;
     }
     _data[_n] = r;
-    _n += 1;
+    _n++;
 }
 
 template<class T>
