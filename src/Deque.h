@@ -4,6 +4,8 @@
 #include <cstdlib>
 #include <new>
 #include <stdexcept>
+#include <cmath>
+#include <iostream>
 
 template<class T>
 class Deque {
@@ -25,7 +27,7 @@ private:
 template<class T>
 void Deque<T>::push_back(T r) {
     if (_n == _max) {
-        auto newSize = static_cast<std::size_t>(_n*1.5);
+        auto newSize = static_cast<std::size_t>(std::ceil(_n*1.5));
         resize(newSize);
         _max = newSize;
     }
