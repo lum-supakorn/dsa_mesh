@@ -49,7 +49,11 @@ void Deque<T>::push_front(T r) {
         return;
     }
     // To make room for the first item, we must move every other items by 1 slot. This process is O(n) and inefficient.
-    // This is why a deque is usually implemented as a doubly-linked list.
+    // This is why a deque is usually implemented as a doubly-linked list. Note that insertion in any random location
+    // into a list implemented with linked allocation is still O(n) if the position is not the front or the back as
+    // traversal is still needed to get into the correct position. However, for double-ended queue, insertion is done
+    // only in the front or the back and it is O(1) for linked allocation implementation and O(n) for sequential
+    // allocation implementation.
     for (std::size_t i = _n; i--;) { // Decrementing loop with unsigned integer
         _data[i+1] = _data[i];
     }
