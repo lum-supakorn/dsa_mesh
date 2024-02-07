@@ -23,6 +23,21 @@ private:
 };
 
 template<class T>
+T Deque<T>::pop_front() {
+    if (_n > 0) {
+        // Data remains (no shrinking yet) but can be overwritten
+        T item = _data[0];
+        for (std::size_t i = 1; i < _n; i++) {
+            _data[i-1] = _data[i];
+        }
+        _n--;
+        return item;
+    } else {
+        throw std::out_of_range("Popping an empty deque");
+    }
+}
+
+template<class T>
 void Deque<T>::push_front(T r) {
     if (_n == _max) {
         auto newSize = static_cast<std::size_t>(std::ceil(_n*1.5));
